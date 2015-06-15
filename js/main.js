@@ -123,9 +123,24 @@ var locations = [
       ' <a href="https://www.codefellows.org/">www.codefellows.org</a>'+
            '</div>', 47.623569, -122.336048, 1],
     ];
+    var geocoder;
+    var map;
+    function initialize() {
+  geocoder = new google.maps.Geocoder();
+  }
+  function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 3,
+      zoom: 6,
       center: new google.maps.LatLng(40.707437, -99.592151),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -147,3 +162,5 @@ var locations = [
         }
       })(marker, i));
     }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
