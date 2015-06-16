@@ -143,7 +143,8 @@ var locations = [
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 6,
       center: new google.maps.LatLng(40.707437, -99.592151),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true
     });
 
     var infowindow = new google.maps.InfoWindow();
